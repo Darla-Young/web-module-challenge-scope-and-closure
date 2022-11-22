@@ -87,8 +87,18 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inning, num){
+  let score = {
+    "Home": 0,
+    "Away": 0
+  }
+  for (let i = 0; i < num; i++) {
+    score = {
+      "Home": score.Home + inning(),
+      "Away": score.Away + inning()
+    }
+    return score;
+  }
 }
 
 
