@@ -117,8 +117,8 @@ For example: invoking getInningScore(inning) might return this object:
 
 function getInningScore(cb) {
   let score = {
-    "Home": inning(),
-    "Away": inning()
+    "Home": cb(),
+    "Away": cb()
   }
   return score;
 }
@@ -164,11 +164,25 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ] */
 // NOTE: There is no test associated with this code; if your output matches the given example, consider it complete!
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+
+function scoreboard(getInningScore, inning, num) {
+  let board = [];
+  let away = 0;
+  let home = 0;
+  for (let i = 1; i < num + 1; i++) {
+    let newAway = getInningScore(inning).Away;
+    let newHome = getInningScore(inning).Home;
+    away = away + newAway;
+    home = home + newHome;
+    board.push((`Inning ${i}: Away ${newAway} - Home ${newHome}`))
+  }
+  away === home ?
+    board.push(`This game will require extra innings: Away ${away} - Home ${home}`)
+    : board.push(`Final Score: Away ${away} - Home ${home}`);
+  return board;
 }
 
-
+console.log(scoreboard(getInningScore, inning, 9));
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
